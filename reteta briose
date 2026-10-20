@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f0e7">
+  <title>Brioșe cu ciocolată | Rețeta de azi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #292720;
+      --muted: #777267;
+      --paper: #f6f0e7;
+      --white: #fffdf9;
+      --orange: #c5522e;
+      --green: #536a4b;
+      --line: #e9e1d6;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "DM Sans", sans-serif;
+    }
+
+    .page {
+      width: min(1120px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    header {
+      height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(41, 39, 32, .13);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-weight: 700;
+      letter-spacing: .02em;
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 34px;
+      height: 34px;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--orange);
+      color: white;
+      font-size: 19px;
+    }
+
+    .header-note {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    main { padding: 40px 0 72px; }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      color: var(--orange);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1 {
+      max-width: 720px;
+      margin-bottom: 15px;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(42px, 6vw, 70px);
+      line-height: 1.04;
+      letter-spacing: 0;
+    }
+
+    .intro {
+      max-width: 570px;
+      margin-bottom: 25px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 24px;
+      margin-bottom: 30px;
+      color: #514e45;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .meta span { display: inline-flex; align-items: center; gap: 8px; }
+    .meta b { color: var(--green); font-size: 16px; }
+
+    .hero-image {
+      display: block;
+      width: 100%;
+      height: clamp(230px, 38vw, 410px);
+      border-radius: 5px;
+      background: #d8c9b4;
+      object-fit: cover;
+      object-position: center 55%;
+    }
+
+    .image-caption {
+      margin: 9px 0 36px;
+      color: var(--muted);
+      font-size: 11px;
+      text-align: right;
+    }
+
+    .recipe-grid {
+      display: grid;
+      grid-template-columns: minmax(240px, .78fr) minmax(0, 1.5fr);
+      gap: clamp(32px, 7vw, 88px);
+    }
+
+    h2 {
+      margin-bottom: 19px;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 29px;
+      letter-spacing: 0;
+    }
+
+    .ingredient-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 17px;
+    }
+
+    .ingredient-top h2 { margin: 0; }
+
+    .servings {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      padding: 5px;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      background: var(--white);
+    }
+
+    .servings button {
+      width: 28px;
+      height: 28px;
+      border: 0;
+      border-radius: 3px;
+      background: #f2ece3;
+      color: var(--ink);
+      cursor: pointer;
+      font: inherit;
+      font-size: 18px;
+    }
+
+    .servings button:hover { background: #e9dfd2; }
+    .servings output { min-width: 15px; text-align: center; font-size: 13px; font-weight: 700; }
+
+    .ingredient-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .ingredient-list li { border-bottom: 1px solid var(--line); }
+
+    .ingredient-list label {
+      display: flex;
+      min-height: 49px;
+      align-items: center;
+      gap: 11px;
+      color: #4c4941;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .ingredient-list input {
+      width: 17px;
+      height: 17px;
+      accent-color: var(--green);
+    }
+
+    .ingredient-list input:checked + span {
+      color: #969185;
+      text-decoration: line-through;
+    }
+
+    .steps { margin: 0; padding: 0; list-style: none; counter-reset: recipe-step; }
+    .steps li {
+      position: relative;
+      min-height: 76px;
+      padding: 0 0 23px 50px;
+      color: #514e45;
+      font-size: 14px;
+      line-height: 1.7;
+      counter-increment: recipe-step;
+    }
+
+    .steps li::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: grid;
+      width: 32px;
+      height: 32px;
+      place-items: center;
+      border-radius: 50%;
+      background: #e6e9df;
+      color: var(--green);
+      content: counter(recipe-step, decimal-leading-zero);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .tip {
+      margin-top: 13px;
+      padding: 17px 19px;
+      border-left: 3px solid var(--orange);
+      background: #eee7dc;
+      color: #5c574d;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .tip strong { color: var(--ink); }
+
+    @media (max-width: 680px) {
+      .page { width: min(100% - 32px, 540px); }
+      header { height: 66px; }
+      .header-note { font-size: 11px; }
+      main { padding-top: 31px; }
+      .intro { font-size: 15px; }
+      .recipe-grid { grid-template-columns: 1fr; gap: 38px; }
+      .image-caption { margin-bottom: 29px; }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      main { animation: arrive .55s ease-out both; }
+      @keyframes arrive { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="brand"><span class="brand-mark" aria-hidden="true">✳</span> Rețeta de azi</div>
+      <span class="header-note">Ceva bun, făcut acasă</span>
+    </header>
+
+    <main>
+      <p class="eyebrow">Din cuptor, cu drag</p>
+      <h1>Brioșe pufoase cu ciocolată</h1>
+      <p class="intro">Moi la mijloc, ușor rumenite la margini și pline de bucățele de ciocolată. Se pregătesc repede și dispar și mai repede.</p>
+      <div class="meta" aria-label="Detalii despre rețetă">
+        <span><b aria-hidden="true">◷</b> 15 min pregătire</span>
+        <span><b aria-hidden="true">♨</b> 20 min la cuptor</span>
+        <span><b aria-hidden="true">◆</b> 12 brioșe</span>
+      </div>
+
+      <img class="hero-image" src="https://images.unsplash.com/photo-1607958996333-41aef7caefaa?auto=format&fit=crop&w=1800&q=85" alt="Brioșe proaspăt coapte, cu ciocolată" onerror="this.style.display='none'">
+      <p class="image-caption">Brioșe calde, numai bune de împărțit.</p>
+
+      <div class="recipe-grid">
+        <section aria-labelledby="ingredients-title">
+          <div class="ingredient-top">
+            <h2 id="ingredients-title">Ingrediente</h2>
+            <div class="servings" aria-label="Ajustează numărul de brioșe">
+              <button type="button" id="decrease" aria-label="Scade numărul de porții">−</button>
+              <output id="servings-count" aria-live="polite">12</output>
+              <button type="button" id="increase" aria-label="Crește numărul de porții">+</button>
+            </div>
+          </div>
+          <ul class="ingredient-list" id="ingredients"></ul>
+        </section>
+
+        <section aria-labelledby="steps-title">
+          <h2 id="steps-title">Cum le prepari</h2>
+          <ol class="steps">
+            <li>Încălzește cuptorul la 180°C și așază hârtiuțele în tava de brioșe.</li>
+            <li>Amestecă într-un bol făina, zahărul, praful de copt și sarea.</li>
+            <li>În alt bol, bate ouăle cu laptele, untul topit și vanilia.</li>
+            <li>Toarnă ingredientele lichide peste cele uscate. Amestecă ușor, doar cât să se combine, apoi încorporează ciocolata.</li>
+            <li>Umple formele cam trei sferturi și coace 18–20 de minute, până când o scobitoare iese aproape curată.</li>
+            <li>Lasă brioșele 5 minute în tavă, apoi mută-le pe un grătar. Sunt minunate încă ușor calde.</li>
+          </ol>
+          <aside class="tip"><strong>Micul secret:</strong> Nu amesteca prea mult aluatul. Câteva cocoloașe mici îl păstrează pufos.</aside>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const baseIngredients = [
+      { amount: 250, unit: "g", name: "făină" },
+      { amount: 150, unit: "g", name: "zahăr" },
+      { amount: 2, unit: "lingurițe", name: "praf de copt" },
+      { amount: 1, unit: "priză", name: "sare" },
+      { amount: 2, unit: "bucăți", name: "ouă" },
+      { amount: 180, unit: "ml", name: "lapte" },
+      { amount: 100, unit: "g", name: "unt topit" },
+      { amount: 1, unit: "linguriță", name: "esență de vanilie" },
+      { amount: 120, unit: "g", name: "ciocolată, tocată" }
+    ];
+
+    let servings = 12;
+    const ingredientsList = document.querySelector("#ingredients");
+    const servingsCount = document.querySelector("#servings-count");
+
+    function formatAmount(amount) {
+      const scaled = amount * servings / 12;
+      return Number.isInteger(scaled) ? scaled : Number(scaled.toFixed(1));
+    }
+
+    function renderIngredients() {
+      servingsCount.textContent = servings;
+      ingredientsList.replaceChildren(...baseIngredients.map((ingredient) => {
+        const item = document.createElement("li");
+        const label = document.createElement("label");
+        const checkbox = document.createElement("input");
+        const text = document.createElement("span");
+        checkbox.type = "checkbox";
+        text.textContent = `${formatAmount(ingredient.amount)} ${ingredient.unit} ${ingredient.name}`;
+        label.append(checkbox, text);
+        item.append(label);
+        return item;
+      }));
+    }
+
+    document.querySelector("#decrease").addEventListener("click", () => {
+      servings = Math.max(1, servings - 1);
+      renderIngredients();
+    });
+
+    document.querySelector("#increase").addEventListener("click", () => {
+      servings = Math.min(48, servings + 1);
+      renderIngredients();
+    });
+
+    renderIngredients();
+  </script>
+</body>
+</html>
